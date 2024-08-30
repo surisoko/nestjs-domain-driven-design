@@ -16,7 +16,8 @@
     "test": "vitest run --pool=forks",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
-    "test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false"
+    "test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false",
+    "sync-database": "pnpm prisma db push && pnpm prisma generate"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
