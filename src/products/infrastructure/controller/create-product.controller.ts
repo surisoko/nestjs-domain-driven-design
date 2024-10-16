@@ -38,7 +38,7 @@ export class CreateProductController {
         })
       }
 
-      return response.status(HttpStatus.INTERNAL_SERVER_ERROR).send()
+      return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json()
     }
   }
 }

@@ -12,7 +12,7 @@ export class GetProductsController {
 
       return response.status(HttpStatus.OK).json(productsRepresentation)
     } catch (error: any) {
-      return response.status(HttpStatus.INTERNAL_SERVER_ERROR).send()
+      return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json()
     }
   }
 }
