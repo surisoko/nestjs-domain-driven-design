@@ -1,0 +1,49 @@
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: .docker/server/Dockerfile
+    environment:
+      - PORT
+    ports:
+      - 3001:3000
+    depends_on:
+      postgresql:
+        condition: service_healthy
+        restart: true
+    volumes:
+      - .:/var/current:delegated
+    networks:
+      - app-network
+
+  postgresql:
+    container_name: postgresql
+    image: postgres:14.3-alpine
+    tty: true
+    restart: always
+    environment:
+      - POSTGRES_DB=shop
+      - POSTGRES_HOST=postgresql
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pgsql-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - app-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d shop']
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pgsql-data:
+    driver: local
