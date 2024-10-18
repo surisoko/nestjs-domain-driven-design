@@ -6,6 +6,7 @@ services:
       dockerfile: .docker/server/Dockerfile
     environment:
       - PORT
+      - DATABASE_URL=postgresql://postgres:postgres@postgresql:5432/shop?schema=public
     ports:
       - 3001:3000
     depends_on:
