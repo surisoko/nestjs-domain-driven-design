@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { prisma } from 'src/app.module'
 import { CreateProduct } from 'src/products/application/use-case/create-product.use-case'
-import { ProductCreated } from '../../../src/products/domain/event/product-created.event'
+import { ProductCreated } from '../../../../src/products/domain/event/product-created.event'
 import { ProductInStock } from 'src/products/domain/value-object/product-in-stock.value-object'
 import { ProductName } from 'src/products/domain/value-object/product-name.value-object'
 import { ProductPrice } from 'src/products/domain/value-object/product-price.value-object'
@@ -26,7 +26,9 @@ describe('Create product use case', () => {
       new PrismaProductRepository(),
       fakeEventBus,
     )
-    const productName = ProductName.fromString(faker.string.alpha({ length: { min:3, max: 30 } }))
+    const productName = ProductName.fromString(
+      faker.string.alpha({ length: { min: 3, max: 30 } }),
+    )
     const productPrice = ProductPrice.fromNumber(
       faker.number.float({ multipleOf: 0.01 }),
     )

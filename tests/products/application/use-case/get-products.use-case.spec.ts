@@ -21,7 +21,7 @@ describe('Get products use case', () => {
     const timestamp = new Date('2020-01-01')
     const product = Product.fromPrimitives({
       id: ProductId.create().value,
-      name: faker.string.alpha({ length: { min:3, max: 30 } }),
+      name: faker.string.alpha({ length: { min: 3, max: 30 } }),
       price: Number(faker.finance.amount()),
       inStock: true,
       createdAt: timestamp,
